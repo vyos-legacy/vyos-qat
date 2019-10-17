@@ -1,0 +1,5 @@
+qat (1.7-1) unstable; urgency=low
+
+  * Initial release for the installation on vyos 
+
+ -- hagbard <vyosdev@derith.de>  Tue, 15 Oct 2019 19:21:07 +0000
