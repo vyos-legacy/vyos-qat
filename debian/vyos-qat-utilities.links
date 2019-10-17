@@ -1,0 +1,10 @@
+etc/d15xx_dev0.conf 	etc/d15xx_dev1.conf
+etc/d15xx_dev0.conf 	etc/d15xx_dev2.conf
+etc/c3xxx_dev0.conf 	etc/c3xxx_dev1.conf
+etc/c3xxx_dev0.conf 	etc/c3xxx_dev2.conf
+etc/c6xx_dev0.conf  	etc/c6xx_dev1.conf
+etc/c6xx_dev0.conf  	etc/c6xx_dev2.conf
+etc/d15xx_dev0.conf 	etc/d15xx_dev1.conf
+etc/d15xx_dev0.conf 	etc/d15xx_dev2.conf
+etc/dh895xcc_dev0.conf  etc/dh895xcc_dev1.conf
+etc/dh895xcc_dev0.conf	etc/dh895xcc_dev2.conf
