@@ -4,7 +4,7 @@ include /usr/share/dpkg/default.mk
 
 DH_VERBOSE=1
 
-KV := $(shell ${MAKE} -sC ${KERNELDIR} kernelversion)
+KV := $(shell cat ${KERNELDIR}/include/config/kernel.release)
 
 %:
 	dh $@
@@ -24,19 +24,18 @@ override_dh_auto_install:
 	mkdir -p debian/tmp/usr/bin
 	mkdir -p debian/tmp/usr/lib/x86_64-linux-gnu
 	mkdir -p debian/tmp/etc/modprobe.d
-	mkdir -p debian/tmp/lib/modules/$(KV)-$(DEB_BUILD_ARCH)-vyos/kernel/drivers
+	mkdir -p debian/tmp/lib/modules/$(KV)/kernel/drivers
 	cp build/*.bin  debian/tmp/lib/firmware
 	${MAKE} INSTALL_MOD_PATH=${PWD}/debian/intel qat-driver-install
-	cp -r debian/intel/lib/modules/*/updates debian/tmp/lib/modules/$(KV)-$(DEB_BUILD_ARCH)-vyos/
-	cp build/usdm_drv.ko debian/tmp/lib/modules/$(KV)-$(DEB_BUILD_ARCH)-vyos/kernel/drivers/
+	cp -r debian/intel/lib/modules/*/updates debian/tmp/lib/modules/$(KV)
+	cp build/usdm_drv.ko debian/tmp/lib/modules/$(KV)/kernel/drivers/
 	cp build/adf_ctl debian/tmp/usr/bin/
 	cp build/*.so debian/tmp/usr/lib/x86_64-linux-gnu
-	#cp build/d15xx_dev0.conf debian/tmp/etc/
 	cp vyos-default/*.conf debian/tmp/etc/
 	cp vyos-default/modprobe.d/*.conf debian/tmp/etc/modprobe.d
 
 override_dh_gencontrol:
-	dh_gencontrol -- -Vdist:Depends="linux-image-$(KV)-$(DEB_BUILD_ARCH)-vyos"
+	dh_gencontrol -- -Vdist:Depends="linux-image-$(KV)"
 
 override_dh_installinit:
 	dh_installinit -v -n
